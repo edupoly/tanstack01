@@ -4,7 +4,7 @@ import { queryOptions, useSuspenseQuery } from '@tanstack/react-query'
 
 // 1. Define Query Options
 const productsQueryOptions = queryOptions({
-  queryKey: ['prd'],
+  queryKey: ['products'],
   queryFn: async () => {
     const res = await fetch('https://dummyjson.com/products')
     const data = await res.json()
@@ -13,7 +13,7 @@ const productsQueryOptions = queryOptions({
 })
 
 // 2. Define Route with Loader
-export const Route = createFileRoute('/products')({
+export const Route = createFileRoute('/products/')({
   // The Loader ensures data is fetched before the page loads
   loader: ({ context: { queryClient } }) => {
     return queryClient.ensureQueryData(productsQueryOptions)
